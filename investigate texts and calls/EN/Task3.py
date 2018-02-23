@@ -72,7 +72,7 @@ def extract_code(phone_num):
     else:
         return None, None
 
-list_code = set()
+code_set = set()
 total_call = 0
 bangalore_call = 0
 
@@ -82,9 +82,12 @@ for call in calls:
         rec_phone_type, rec_code = extract_code(call[1])
         total_call += 1
         if rec_phone_type is not None:
-            list_code.add(rec_code)
+            code_set.add(rec_code)
         if rec_phone_type == 0 and rec_code == '080':
             bangalore_call += 1
+
+list_code = list(code_set)
+list_code.sort()
 
 print("The numbers called by people in Bangalore have codes:")
 for c in list_code:
